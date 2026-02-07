@@ -126,7 +126,8 @@
       "Bash(.specify/scripts/bash/create-new-feature.sh:*)",
       "Bash(git checkout:*)",
       "Bash(powershell Get-ChildItem:*)",
-      "Bash(del test_title_resolution.py)"
+      "Bash(del test_title_resolution.py)",
+      "Bash(powershell \"Get-ChildItem -Path ''C:\\\\Users\\\\haroon traders\\\\Desktop\\\\GIAIC\\\\Hackathon2-Q4\\\\Hackathon2-Q4\\\\phase-III\\\\frontend\\\\src\\\\app\\\\tasks'' -Recurse\")"
     ]
   }
 }
