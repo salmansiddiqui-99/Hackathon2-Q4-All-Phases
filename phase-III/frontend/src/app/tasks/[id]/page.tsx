@@ -15,9 +15,6 @@ export default function IndividualTaskPage() {
   const [editTitle, setEditTitle] = useState('');
   const [editDescription, setEditDescription] = useState('');
 
-  // For demo purposes, we'll use a fixed user ID
-  // In a real app, this would come from the authenticated user context
-  const userId = 1;
 
   useEffect(() => {
     if (id) {
@@ -28,7 +25,7 @@ export default function IndividualTaskPage() {
   const fetchTask = async (taskId: number) => {
     try {
       setLoading(true);
-      const taskData = await apiClient.getTaskById(userId, taskId);
+      const taskData = await apiClient.getTaskById(taskId);
       setTask(taskData);
       setEditTitle(taskData.title);
       setEditDescription(taskData.description || '');
@@ -43,7 +40,7 @@ export default function IndividualTaskPage() {
     if (!task) return;
 
     try {
-      const updatedTask = await apiClient.updateTask(userId, task.id, {
+      const updatedTask = await apiClient.updateTask(task.id, {
         title: editTitle,
         description: editDescription,
       });
@@ -58,7 +55,7 @@ export default function IndividualTaskPage() {
     if (!task) return;
 
     try {
-      const updatedTask = await apiClient.toggleTaskCompletion(userId, task.id);
+      const updatedTask = await apiClient.toggleTaskCompletion(task.id);
       setTask(updatedTask);
     } catch (err) {
       setError((err as Error).message);
@@ -70,7 +67,7 @@ export default function IndividualTaskPage() {
 
     if (window.confirm('Are you sure you want to delete this task?')) {
       try {
-        await apiClient.deleteTask(userId, task.id);
+        await apiClient.deleteTask(task.id);
         router.push('/tasks');
       } catch (err) {
         setError((err as Error).message);
