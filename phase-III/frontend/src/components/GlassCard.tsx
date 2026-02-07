@@ -6,6 +6,7 @@ interface GlassCardProps {
   variant?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'error';
   elevated?: boolean;
   rounded?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+  style?: React.CSSProperties;
 }
 
 export default function GlassCard({
@@ -13,7 +14,8 @@ export default function GlassCard({
   className = '',
   variant = 'default',
   elevated = true,
-  rounded = 'xl'
+  rounded = 'xl',
+  style
 }: GlassCardProps) {
   const variantClasses = {
     default: 'bg-white/10 backdrop-blur-xl border-white/20 text-white',
@@ -47,6 +49,7 @@ export default function GlassCard({
         overflow-hidden
         ${className}
       `}
+      style={style}
     >
       {children}
     </div>
